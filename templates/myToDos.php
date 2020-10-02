@@ -1,25 +1,5 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My To Dos App</title>
-
-     <!-- Style(s) -->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-
-    <!-- Script(s) -->
-    <script type="text/JavaScript" src="js/scripts.js" defer></script>
-</head>
-<body>
-    <h1>Welcome to My To-Dos!</h1>
-    
-    <!---------------Add to-do start ------------->
-    
-    
-    <h2>Add a To-Do</h2>
-    <?php
+<?php
+    session_start();  
     
 
     if ( !isset( $_SESSION['activeToDos'] ) )
@@ -43,9 +23,11 @@
 
 
      
-    var_dump($_SESSION['activeToDos']);
+    var_dump($_POST['new-to-do']);
 
     ?>
+    <!---------------Add to-do start ------------->
+    <h2>Add a To-Do</h2>
     <form method="POST" action="index.php">
         <label for="new-task">
             Enter a new task:
@@ -68,7 +50,7 @@
         <li>
             <input type="checkbox" id="active-task" name="active-to-do" value="">
             <label for="active-task">
-                <?php echo $_POST['new-to-do']?>
+                <?php echo $_SESSION['activeToDos']?>
             </label>
         </li>
     </ul>
@@ -80,6 +62,3 @@
     <h2>Completed To-Dos</h2>
 
      <!---------------completed to-do end ---------->
-    
-</body>
-</html>
