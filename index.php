@@ -61,17 +61,22 @@
     <!-------------Add to-do completed ----------->
 
 
-    <!---------------Active to-do start ----------->
-    <h2>Active To-Dos</h2>
+    <!---------------Active to-do start ----------->   
 
-    <ul>
-        <li>
-            <input type="checkbox" id="active-task" name="active-to-do" value="">
-            <label for="active-task">
-                <?php echo $_POST['new-to-do']?>
-            </label>
-        </li>
-    </ul>
+    
+    <?php if ( isset( $_SESSION['activeToDos'] ) ) : // Check if there IS a calc history! ?>
+        <h2>Active To-Dos</h2>
+        <ul>
+            <?php foreach ( $_SESSION['activeToDos'] as $activeToDo ) : ?>
+            <li>
+                <input type="checkbox" id="active-task" name="active-to-do" value="">
+                <label for="active-task">
+                    <?php echo $activeToDo; // Output the value from our ActiveToDos array! ?>
+                </label>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
     
 
     <!---------------Active to-do end ------------->
