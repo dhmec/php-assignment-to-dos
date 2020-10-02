@@ -71,7 +71,7 @@
             <li>
                 <input type="checkbox" id="active-task" name="active-to-do" value="">
                 <label for="active-task">
-                    <?php echo $activeToDo; // Output the value from our ActiveToDos array! ?>
+                     <?php echo $activeToDo; // Output the value from our ActiveToDos array! ?> 
                 </label>
             </li>
             <?php endforeach; ?>
