@@ -27,10 +27,7 @@
         $_SESSION['activeToDos'] = array();
     }
 
-    echo '<pre>';    
-    var_dump( $_POST ); 
-    echo '</pre>';
-
+    
     $result = FALSE;
     if ( !empty( $_POST ) ) // Check if there are any values in our array!
     { 
@@ -43,7 +40,7 @@
 
 
      
-    var_dump($_SESSION['activeToDos']);
+   
 
     ?>
     <form method="POST" action="index.php">
@@ -59,12 +56,17 @@
         <input type="reset" value="reset">
     </form>
     <!-------------Add to-do completed ----------->
-
+    <?php
+    echo '<pre>';    
+    var_dump( $_POST ); 
+    var_dump($_SESSION['activeToDos']);
+    echo '</pre>';
+    ?>
 
     <!---------------Active to-do start ----------->   
 
     
-    <?php if ( isset( $_SESSION['activeToDos'] ) ) : // Check if there IS a calc history! ?>
+    <?php if ( isset( $_SESSION['activeToDos'] ) ) :  ?>
         <h2>Active To-Dos</h2>
         <ul>
             <?php foreach ( $_SESSION['activeToDos'] as $activeToDo ) : ?>
