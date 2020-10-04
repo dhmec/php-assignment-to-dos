@@ -26,15 +26,17 @@
     {
         $_SESSION['activeToDos'] = array();
     }
-
     
-    $result = FALSE;
-    if ( !empty( $_POST ) ) // Check if there are any values in our array!
+    if ( empty( $_POST['add-task'] ) )
+    {
+       $errorMsg = 'Please enter new task';
+    }
+    else // Check if there are any values in our array!
     { 
     // Add this result to the activeToDos array!
     array_push(
         $_SESSION['activeToDos'],
-        "{$_POST['new-to-do']}"
+        "{$_POST['add-task']}"
     );
     }
 
@@ -48,20 +50,16 @@
             Enter a new task:
             <input
             id="new-task"
-            name="new-to-do"
+            name="add-task"
             type="text"
             value="">
         </label>
         <input type="submit" value="Add To List">
+        <p><?php echo $errorMsg ?> </p>
         <input type="reset" value="reset">
     </form>
     <!-------------Add to-do completed ----------->
-    <?php
-    echo '<pre>';    
-    var_dump( $_POST ); 
-    var_dump($_SESSION['activeToDos']);
-    echo '</pre>';
-    ?>
+    
 
     <!---------------Active to-do start ----------->   
 
@@ -87,6 +85,12 @@
     <h2>Completed To-Dos</h2>
 
      <!---------------completed to-do end ---------->
-    
+     <?php
+    echo '<pre>';    
+    var_dump( $_POST ); 
+    var_dump($_SESSION['activeToDos']);
+    var_dump( empty($_POST['add-task']) );
+    echo '</pre>';
+    ?>
 </body>
 </html>
