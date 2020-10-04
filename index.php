@@ -40,6 +40,11 @@
     );
     }
 
+    if( isset($_POST['reset']))
+    {
+        unset($_SESSION['activeToDos']);
+    }
+
 
      
    
@@ -55,8 +60,9 @@
             value="">
         </label>
         <input type="submit" value="Add To List">
+        
+        <input type="submit" name="reset" value="reset">
         <p><?php echo $errorMsg ?> </p>
-        <input type="reset" value="reset">
     </form>
     <!-------------Add to-do completed ----------->
     
@@ -90,6 +96,7 @@
     var_dump( $_POST ); 
     var_dump($_SESSION['activeToDos']);
     var_dump( empty($_POST['add-task']) );
+    var_dump( $_POST['reset'] );
     echo '</pre>';
     ?>
 </body>
