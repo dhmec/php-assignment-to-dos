@@ -26,12 +26,12 @@
     {
         $_SESSION['activeToDos'] = array();
     }
-    
+    // Check if there are any values in our array!
     if ( empty( $_POST['add-task'] ) )
     {
        $errorMsg = 'Please enter new task';
     }
-    else // Check if there are any values in our array!
+    else 
     { 
     // Add this result to the activeToDos array!
     array_push(
@@ -40,6 +40,21 @@
     );
     }
 
+
+    if ( !isset( $_SESSION['completedToDo'] ) )
+    {
+        $_SESSION['completedToDo'] = array();
+    }
+
+    if ( !empty($_POST['active-to-do']) )
+    {
+        array_push(
+            $_SESSION['completedToDo'],
+            "{$_POST['add-task']}"
+        );
+    }
+
+    // reset button for all session reset
     if( isset($_POST['reset']))
     {
         unset($_SESSION['activeToDos']);
@@ -59,9 +74,8 @@
             type="text"
             value="">
         </label>
-        <input type="submit" value="Add To List">
-        
-        <input type="submit" name="reset" value="reset">
+        <input type="submit" value="Add To List">        
+        <input type="submit" name="reset" value="reset">       
         <p><?php echo $errorMsg ?> </p>
     </form>
     <!-------------Add to-do completed ----------->
@@ -75,7 +89,7 @@
         <ul>
             <?php foreach ( $_SESSION['activeToDos'] as $activeToDo ) : ?>
             <li>
-                <input type="checkbox" id="active-task" name="active-to-do" value="">
+                <input type="checkbox" id="active-task" name="active-to-do" value="<?php $activeToDo?>">
                 <label for="active-task">
                      <?php echo $activeToDo; // Output the value from our ActiveToDos array! ?> 
                 </label>
@@ -87,10 +101,8 @@
 
     <!---------------Active to-do end ------------->
 
-    <!---------------completed to-do start -------->
-    <h2>Completed To-Dos</h2>
-
-     <!---------------completed to-do end ---------->
+    <!---------------completed to-do start -------->    
+    <!---------------completed to-do end ---------->
      <?php
     echo '<pre>';    
     var_dump( $_POST ); 
